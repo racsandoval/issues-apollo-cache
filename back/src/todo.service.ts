@@ -13,7 +13,7 @@ const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 @Injectable()
 export class TodoService {
   async get(type: Todos): Promise<TodoModel[]> {
-    await wait(1000);
+    await wait(2000);
     return TodosList[type];
   }
 
@@ -21,14 +21,14 @@ export class TodoService {
     type,
     title,
   }: CreateTodoInputModel & { type: Todos }): Promise<TodoModel> {
-    await wait(1000);
+    await wait(2000);
     const newTodo = { id: uuidv4(), title };
     TodosList[type].unshift(newTodo);
     return newTodo;
   }
 
   async remove({ type, id }: { type: Todos; id: string }): Promise<TodoModel> {
-    await wait(1000);
+    await wait(2000);
     const index = TodosList[type].findIndex((todo) => todo.id === id);
     const [removedTodo] = TodosList[type].splice(index, 1);
     return removedTodo;
